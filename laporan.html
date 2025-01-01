@@ -12,70 +12,77 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: #f0f4f8;
+            font-family: 'Verdana', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: #333;
-            line-height: 1.6;
             padding: 40px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #2d3e50;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 2rem;
-            color: #34495e;
-            text-align: center;
-            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #16a085;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .cluster {
-            background: #fff;
+            background: #f9fafb;
             border-radius: 12px;
-            padding: 30px;
+            padding: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
         }
 
         .cluster:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
         .cluster h3 {
-            font-size: 1.8rem;
-            color: #16a085;
-            margin-bottom: 20px;
+            font-size: 1.6rem;
+            color: #34495e;
+            margin-bottom: 15px;
             text-transform: uppercase;
         }
 
         .cluster ul {
             list-style-type: none;
-            padding-left: 0;
+            padding-left: 20px;
         }
 
         .cluster li {
             font-size: 1.2rem;
             margin-bottom: 10px;
-            padding-left: 20px;
             position: relative;
+            padding-left: 30px;
         }
 
         .cluster li::before {
-            content: "•";
+            content: "★";
             position: absolute;
-            left: 0;
+            left: 10px;
             color: #16a085;
             font-size: 1.5rem;
         }
@@ -83,7 +90,7 @@
         footer {
             text-align: center;
             margin-top: 40px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #7f8c8d;
         }
 
@@ -96,15 +103,13 @@
         footer a:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
 
-    <header>
+    <div class="container">
         <h1>Laporan Hasil Clustering</h1>
-    </header>
-
-    <main class="container">
         <h2>Analisis Hasil Clustering pada Data Komentar Grup WhatsApp</h2>
 
         <div class="cluster">
@@ -140,7 +145,7 @@
         <footer>
             <p>Terima kasih telah membaca laporan ini. <a href="#">Kembali ke atas</a></p>
         </footer>
-    </main>
+    </div>
 
 </body>
 </html>
