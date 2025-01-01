@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #16a085;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1abc9c;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #result-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Student Management System</h1>
+        <div class="student-info">
+            <label for="student-name">Enter Student Name:</label>
+            <input type="text" id="student-name" placeholder="Enter name" />
+            <button onclick="createStudent()">Create Student</button>
+        </div>
+
+        <div id="student-actions" class="hidden">
+            <h2>Actions for <span id="student-name-display"></span></h2>
+            <button onclick="paySPP()">Pay SPP</button>
+            <button onclick="enrollCourse()">Enroll Course</button>
+            <button onclick="submitGrade()">Submit Grade</button>
+            <button onclick="displayFinalGrade()">Display Final Grade</button>
+        </div>
+
+        <div id="enroll-section" class="hidden">
+            <h3>Enroll in a Course</h3>
+            <input type="text" id="course-name" placeholder="Course Name" />
+            <button onclick="enrollCourseInList()">Enroll</button>
+        </div>
+
+        <div id="grade-section" class="hidden">
+            <h3>Submit a Grade</h3>
+            <input type="number" id="grade-input" placeholder="Grade" />
+            <button onclick="submitGradeInList()">Submit Grade</button>
+        </div>
+
+        <div id="result-section" class="hidden">
+            <h3>Results</h3>
+            <p id="final-grade-result"></p>
+        </div>
+    </main>
+
+    <script>
+        let student = null;
+
+        function createStudent() {
+            const studentName = document.getElementById('student-name').value;
+            if (studentName) {
+                student = new Student(studentName);
+                document.getElementById('student-name-display').innerText = student.name;
+                document.getElementById('student-actions').classList.remove('hidden');
+                document.getElementById('student-info').classList.add('hidden');
+            } else {
+                alert('Please enter a student name.');
+            }
+        }
+
+        function paySPP() {
+            if (student) {
+                student.paySPP();
+            }
+        }
+
+        function enrollCourse() {
+            if (student) {
+                document.getElementById('enroll-section').classList.remove('hidden');
+            }
+        }
+
+        function enrollCourseInList() {
+            const courseName = document.getElementById('course-name').value;
+            if (courseName) {
+                student.enrollCourse(courseName);
+                document.getElementById('course-name').value = '';
+                document.getElementById('enroll-section').classList.add('hidden');
+            }
+        }
+
+        function submitGrade() {
+            if (student) {
+                document.getElementById('grade-section').classList.remove('hidden');
+            }
+        }
+
+        function submitGradeInList() {
+            const grade = document.getElementById('grade-input').value;
+            if (grade) {
+                student.submitGrade(Number(grade));
+                document.getElementById('grade-input').value = '';
+                document.getElementById('grade-section').classList.add('hidden');
+            }
+        }
+
+        function displayFinalGrade() {
+            if (student) {
+                const finalGrade = student.calculateFinalGrade();
+                document.getElementById('final-grade-result').innerText = `Final Grade for ${student.name}: ${finalGrade}`;
+                document.getElementById('result-section').classList.remove('hidden');
+            }
+        }
+
+        class Student {
+            constructor(name) {
+                this.name = name;
+                this.sppPaid = false;
+                this.grades = [];
+                this.courses = [];
+            }
+
+            paySPP() {
+                this.sppPaid = true;
+                alert(`${this.name} has paid the SPP.`);
+            }
+
+            enrollCourse(course) {
+                if (!this.sppPaid) {
+                    alert(`${this.name} cannot enroll in ${course} before paying the SPP.`);
+                } else {
+                    this.courses.push(course);
+                    alert(`${this.name} has enrolled in ${course}.`);
+                }
+            }
+
+            submitGrade(grade) {
+                this.grades.push(grade);
+                alert(`${this.name} has received a grade of ${grade}.`);
+            }
+
+            calculateFinalGrade() {
+                if (this.grades.length === 0) {
+                    return 0;
+                }
+                const totalGrade = this.grades.reduce((acc, grade) => acc + grade, 0);
+                return totalGrade / this.grades.length;
+            }
+        }
+    </script>
+</body>
+</html>
