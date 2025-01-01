@@ -18,8 +18,9 @@
             padding: 40px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* memastikan halaman dimulai dari atas */
             height: 100vh;
+            overflow: auto; /* memungkinkan scroll jika konten lebih besar dari layar */
         }
 
         main {
@@ -30,12 +31,14 @@
             background: rgba(0, 0, 0, 0.6);
             border-radius: 12px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            overflow: auto; /* memastikan konten bisa scroll jika diperlukan */
         }
 
         h1, h2 {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 20px;
+            padding-top: 20px; /* menambah padding atas */
         }
 
         .cluster {
