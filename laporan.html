@@ -4,24 +4,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Clustering</title>
+    <title>Laporan Hasil Clustering</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #2c3e50; }
-        .cluster { margin-bottom: 20px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #34495e;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .cluster {
+            background: #ffffff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cluster h3 {
+            font-size: 1.5em;
+            color: #16a085;
+            margin-bottom: 15px;
+        }
+        .cluster ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .cluster li {
+            font-size: 1.1em;
+            margin: 10px 0;
+            color: #555;
+        }
+        .cluster li strong {
+            color: #2c3e50;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1em;
+            color: #7f8c8d;
+        }
+        footer a {
+            color: #16a085;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <h1>Laporan Hasil Clustering</h1>
-    <p>Data diproses dan dianalisis dengan metode TF-IDF dan algoritma KMeans untuk membuat 3, 4, dan 5 klaster.</p>
-    <h2>Analisis</h2>
-    <div>
-        <h3>Hasil Clustering (3 Klaster)</h3>
-        <p>... Analisis dan kata teratas ...</p>
-        <h3>Hasil Clustering (4 Klaster)</h3>
-        <p>... Analisis dan kata teratas ...</p>
-        <h3>Hasil Clustering (5 Klaster)</h3>
-        <p>... Analisis dan kata teratas ...</p>
+    <p>Berikut adalah hasil analisis clustering pada data komentar grup WhatsApp:</p>
+
+    <div class="cluster">
+        <h3>Hasil Clustering untuk 3 Klaster</h3>
+        <ul>
+            <li><strong>Klaster 1:</strong> silakan, merapat, mutabaah</li>
+            <li><strong>Klaster 2:</strong> media, disertakan, tidak</li>
+            <li><strong>Klaster 3:</strong> atas, denger, ga</li>
+        </ul>
     </div>
+
+    <div class="cluster">
+        <h3>Hasil Clustering untuk 4 Klaster</h3>
+        <ul>
+            <li><strong>Klaster 1:</strong> silakan, merapat, mutabaah</li>
+            <li><strong>Klaster 2:</strong> disertakan, media, tidak</li>
+            <li><strong>Klaster 3:</strong> atas, denger, ga</li>
+            <li><strong>Klaster 4:</strong> teman, assalamualaikum, untuk</li>
+        </ul>
+    </div>
+
+    <div class="cluster">
+        <h3>Hasil Clustering untuk 5 Klaster</h3>
+        <ul>
+            <li><strong>Klaster 1:</strong> silakan, merapat, mutabaah</li>
+            <li><strong>Klaster 2:</strong> disertakan, media, tidak</li>
+            <li><strong>Klaster 3:</strong> atas, denger, ga</li>
+            <li><strong>Klaster 4:</strong> teman, assalamualaikum, untuk</li>
+            <li><strong>Klaster 5:</strong> lupa, jangan, ya</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Terima kasih telah membaca laporan ini. <a href="#">Kembali ke atas</a></p>
+    </footer>
+</body>
+</html>
+
+
+
 </body>
 </html>
