@@ -3,209 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management</title>
+    <title>Simulasi Proses Mahasiswa</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            text-align: center;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7fb;
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        header {
+            background-color: #6c63ff;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
             margin: 0;
         }
 
         main {
-            width: 100%;
-            max-width: 600px;
-            margin: 20px;
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        input {
-            padding: 10px;
-            font-size: 1em;
-            margin-bottom: 10px;
-            width: 80%;
+        pre {
+            background: #f0f0f0;
+            padding: 15px;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            text-align: left;
+            overflow-x: auto;
         }
 
         button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #16a085;
+            background-color: #6c63ff;
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
         }
 
         button:hover {
-            background-color: #1abc9c;
+            background-color: #574fcc;
         }
 
-        .hidden {
-            display: none;
-        }
-
-        #result-section {
+        #logs {
             margin-top: 20px;
+            text-align: left;
+        }
+
+        .log-entry {
+            background: #e0e0ff;
+            padding: 10px;
+            border-radius: 3px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Simulasi Proses Mahasiswa</h1>
+    </header>
+
     <main>
-        <h1>Student Management System</h1>
-        <div class="student-info">
-            <label for="student-name">Enter Student Name:</label>
-            <input type="text" id="student-name" placeholder="Enter name" />
-            <button onclick="createStudent()">Create Student</button>
-        </div>
+        <h2>Kode Python</h2>
+        <pre>
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.spp_paid = False
+        self.grades = []
 
-        <div id="student-actions" class="hidden">
-            <h2>Actions for <span id="student-name-display"></span></h2>
-            <button onclick="paySPP()">Pay SPP</button>
-            <button onclick="enrollCourse()">Enroll Course</button>
-            <button onclick="submitGrade()">Submit Grade</button>
-            <button onclick="displayFinalGrade()">Display Final Grade</button>
-        </div>
+    def pay_spp(self):
+        self.spp_paid = True
+        print(f"{self.name} telah membayar SPP.")
 
-        <div id="enroll-section" class="hidden">
-            <h3>Enroll in a Course</h3>
-            <input type="text" id="course-name" placeholder="Course Name" />
-            <button onclick="enrollCourseInList()">Enroll</button>
-        </div>
+    def enroll_course(self, course):
+        if not self.spp_paid:
+            print(f"{self.name} tidak bisa mendaftar ke mata kuliah {course} sebelum membayar SPP.")
+        else:
+            print(f"{self.name} telah mendaftar ke mata kuliah {course}.")
 
-        <div id="grade-section" class="hidden">
-            <h3>Submit a Grade</h3>
-            <input type="number" id="grade-input" placeholder="Grade" />
-            <button onclick="submitGradeInList()">Submit Grade</button>
-        </div>
+    def submit_grade(self, grade):
+        self.grades.append(grade)
+        print(f"{self.name} telah mendapatkan nilai {grade}.")
 
-        <div id="result-section" class="hidden">
-            <h3>Results</h3>
-            <p id="final-grade-result"></p>
-        </div>
+    def calculate_final_grade(self):
+        if not self.grades:
+            return 0
+        final_grade = sum(self.grades) / len(self.grades)
+        return final_grade
+
+    def display_final_grade(self):
+        final_grade = self.calculate_final_grade()
+        print(f"Nilai akhir {self.name} adalah {final_grade:.2f}.")
+
+# Simulasi untuk mahasiswa
+student1 = Student("Ali")
+student1.pay_spp()
+student1.enroll_course("Pemrograman Dasar")
+student1.enroll_course("Algoritma dan Struktur Data")
+student1.submit_grade(85)
+student1.submit_grade(90)
+student1.display_final_grade()
+        </pre>
+
+        <h2>Hasil Simulasi</h2>
+        <button onclick="runSimulatedFlow()">Jalankan Simulasi</button>
+
+        <div id="logs"></div>
     </main>
 
     <script>
-        let student = null;
+        function runSimulatedFlow() {
+            const logs = [];
+            logs.push("Memulai proses mengikuti kuliah informatika.");
 
-        function createStudent() {
-            const studentName = document.getElementById('student-name').value;
-            if (studentName) {
-                student = new Student(studentName);
-                document.getElementById('student-name-display').innerText = student.name;
-                document.getElementById('student-actions').classList.remove('hidden');
-                document.getElementById('student-info').classList.add('hidden');
+            const sppTerbayar = true;
+            if (sppTerbayar) {
+                logs.push("SPP berhasil dibayarkan.");
+                logs.push("Mahasiswa telah mendaftar ke mata kuliah Pemrograman Dasar.");
+                logs.push("Mahasiswa telah mendaftar ke mata kuliah Algoritma dan Struktur Data.");
+                
+                const grades = [85, 90];
+                const finalGrade = grades.reduce((acc, grade) => acc + grade, 0) / grades.length;
+                logs.push("Nilai ujian diproses.");
+                logs.push(`Nilai akhir untuk Ali adalah ${finalGrade.toFixed(2)}.`);
             } else {
-                alert('Please enter a student name.');
-            }
-        }
-
-        function paySPP() {
-            if (student) {
-                student.paySPP();
-            }
-        }
-
-        function enrollCourse() {
-            if (student) {
-                document.getElementById('enroll-section').classList.remove('hidden');
-            }
-        }
-
-        function enrollCourseInList() {
-            const courseName = document.getElementById('course-name').value;
-            if (courseName) {
-                student.enrollCourse(courseName);
-                document.getElementById('course-name').value = '';
-                document.getElementById('enroll-section').classList.add('hidden');
-            }
-        }
-
-        function submitGrade() {
-            if (student) {
-                document.getElementById('grade-section').classList.remove('hidden');
-            }
-        }
-
-        function submitGradeInList() {
-            const grade = document.getElementById('grade-input').value;
-            if (grade) {
-                student.submitGrade(Number(grade));
-                document.getElementById('grade-input').value = '';
-                document.getElementById('grade-section').classList.add('hidden');
-            }
-        }
-
-        function displayFinalGrade() {
-            if (student) {
-                const finalGrade = student.calculateFinalGrade();
-                document.getElementById('final-grade-result').innerText = `Final Grade for ${student.name}: ${finalGrade}`;
-                document.getElementById('result-section').classList.remove('hidden');
-            }
-        }
-
-        class Student {
-            constructor(name) {
-                this.name = name;
-                this.sppPaid = false;
-                this.grades = [];
-                this.courses = [];
+                logs.push("SPP belum dibayarkan. Proses dihentikan.");
             }
 
-            paySPP() {
-                this.sppPaid = true;
-                alert(`${this.name} has paid the SPP.`);
-            }
+            logs.push("Proses mengikuti kuliah informatika selesai.");
 
-            enrollCourse(course) {
-                if (!this.sppPaid) {
-                    alert(`${this.name} cannot enroll in ${course} before paying the SPP.`);
-                } else {
-                    this.courses.push(course);
-                    alert(`${this.name} has enrolled in ${course}.`);
-                }
-            }
-
-            submitGrade(grade) {
-                this.grades.push(grade);
-                alert(`${this.name} has received a grade of ${grade}.`);
-            }
-
-            calculateFinalGrade() {
-                if (this.grades.length === 0) {
-                    return 0;
-                }
-                const totalGrade = this.grades.reduce((acc, grade) => acc + grade, 0);
-                return totalGrade / this.grades.length;
-            }
+            const logsDiv = document.getElementById('logs');
+            logsDiv.innerHTML = logs.map(log => `<div class='log-entry'>${log}</div>`).join('');
         }
     </script>
 </body>
