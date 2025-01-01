@@ -5,62 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulasi Proses Mahasiswa</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff7a18, #af002d 40%, #3205a8);
+            color: #fff;
+            padding: 40px;
+        }
+
+        h1, h2 {
             text-align: center;
-        }
-
-        header {
-            background-color: #6c63ff;
-            color: white;
-            padding: 20px;
-        }
-
-        h1 {
-            margin: 0;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
         main {
-            padding: 20px;
-        }
-
-        pre {
-            background: #f0f0f0;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: left;
-            overflow-x: auto;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
         button {
-            background-color: #6c63ff;
-            color: white;
+            width: 100%;
+            padding: 15px;
+            background: #ff8a00;
             border: none;
-            padding: 10px 20px;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            color: #fff;
             cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            margin-top: 20px;
+            transition: background 0.3s ease-in-out;
         }
 
         button:hover {
-            background-color: #574fcc;
+            background: #d76d00;
         }
 
-        #logs {
-            margin-top: 20px;
-            text-align: left;
+        .logs {
+            margin-top: 30px;
+            padding: 20px;
+            background: #2e3b4e;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            height: 300px;
+            overflow-y: scroll;
         }
 
         .log-entry {
-            background: #e0e0ff;
+            background: #3c4d69;
+            margin-bottom: 15px;
             padding: 10px;
-            border-radius: 3px;
-            margin-bottom: 10px;
+            border-radius: 5px;
+            animation: fadeIn 0.5s ease-out;
         }
+
+        .log-entry p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            overflow-x: auto;
+            color: #e6e6e6;
+            white-space: pre-wrap;
+        }
+
     </style>
 </head>
 <body>
@@ -69,65 +98,56 @@
     </header>
 
     <main>
-        <h2>Kode Python</h2>
-        <pre>
-class Student:
-    def __init__(self, name):
-        self.name = name
-        self.spp_paid = False
-        self.grades = []
+        <h2>Langkah-langkah Proses Mahasiswa</h2>
 
-    def pay_spp(self):
-        self.spp_paid = True
-        print(f"{self.name} telah membayar SPP.")
+        <div class="code-block">
+            <span class="code">class Student:</span><br>
+            <span class="code">    def __init__(self, name):</span><br>
+            <span class="code">        self.name = name</span><br>
+            <span class="code">        self.spp_paid = False</span><br>
+            <span class="code">        self.grades = []</span><br><br>
 
-    def enroll_course(self, course):
-        if not self.spp_paid:
-            print(f"{self.name} tidak bisa mendaftar ke mata kuliah {course} sebelum membayar SPP.")
-        else:
-            print(f"{self.name} telah mendaftar ke mata kuliah {course}.")
+            <span class="code">    def pay_spp(self):</span><br>
+            <span class="code">        self.spp_paid = True</span><br>
+            <span class="code">        print(f"{self.name} telah membayar SPP.")</span><br><br>
 
-    def submit_grade(self, grade):
-        self.grades.append(grade)
-        print(f"{self.name} telah mendapatkan nilai {grade}.")
+            <span class="code">    def enroll_course(self, course):</span><br>
+            <span class="code">        if not self.spp_paid:</span><br>
+            <span class="code">            print(f"{self.name} tidak bisa mendaftar ke mata kuliah {course}.")</span><br>
+            <span class="code">        else:</span><br>
+            <span class="code">            print(f"{self.name} telah mendaftar ke mata kuliah {course}.")</span><br><br>
 
-    def calculate_final_grade(self):
-        if not self.grades:
-            return 0
-        final_grade = sum(self.grades) / len(self.grades)
-        return final_grade
+            <span class="code">    def submit_grade(self, grade):</span><br>
+            <span class="code">        self.grades.append(grade)</span><br>
+            <span class="code">        print(f"{self.name} telah mendapatkan nilai {grade}.")</span><br><br>
 
-    def display_final_grade(self):
-        final_grade = self.calculate_final_grade()
-        print(f"Nilai akhir {self.name} adalah {final_grade:.2f}.")
+            <span class="code">    def calculate_final_grade(self):</span><br>
+            <span class="code">        final_grade = sum(self.grades) / len(self.grades)</span><br><br>
 
-# Simulasi untuk mahasiswa
-student1 = Student("Ali")
-student1.pay_spp()
-student1.enroll_course("Pemrograman Dasar")
-student1.enroll_course("Algoritma dan Struktur Data")
-student1.submit_grade(85)
-student1.submit_grade(90)
-student1.display_final_grade()
-        </pre>
+            <span class="code">student1 = Student("Ali")</span><br>
+            <span class="code">student1.pay_spp()</span><br>
+            <span class="code">student1.enroll_course("Pemrograman Dasar")</span><br>
+        </div>
 
-        <h2>Hasil Simulasi</h2>
         <button onclick="runSimulatedFlow()">Jalankan Simulasi</button>
 
-        <div id="logs"></div>
+        <div class="logs" id="logs">
+            <p>Hasil akan muncul di sini...</p>
+        </div>
     </main>
 
     <script>
         function runSimulatedFlow() {
             const logs = [];
-            logs.push("Memulai proses mengikuti kuliah informatika.");
+            logs.push("Proses mulai: Mahasiswa Ali mulai mengikuti kuliah.");
 
+            // Simulate the process
             const sppTerbayar = true;
             if (sppTerbayar) {
                 logs.push("SPP berhasil dibayarkan.");
-                logs.push("Mahasiswa telah mendaftar ke mata kuliah Pemrograman Dasar.");
-                logs.push("Mahasiswa telah mendaftar ke mata kuliah Algoritma dan Struktur Data.");
-                
+                logs.push("Mahasiswa Ali telah mendaftar ke mata kuliah Pemrograman Dasar.");
+                logs.push("Mahasiswa Ali telah mendaftar ke mata kuliah Algoritma dan Struktur Data.");
+
                 const grades = [85, 90];
                 const finalGrade = grades.reduce((acc, grade) => acc + grade, 0) / grades.length;
                 logs.push("Nilai ujian diproses.");
@@ -136,10 +156,10 @@ student1.display_final_grade()
                 logs.push("SPP belum dibayarkan. Proses dihentikan.");
             }
 
-            logs.push("Proses mengikuti kuliah informatika selesai.");
+            logs.push("Proses selesai: Mahasiswa Ali berhasil mendapatkan KHS.");
 
             const logsDiv = document.getElementById('logs');
-            logsDiv.innerHTML = logs.map(log => `<div class='log-entry'>${log}</div>`).join('');
+            logsDiv.innerHTML = logs.map(log => `<div class="log-entry"><p>${log}</p></div>`).join('');
         }
     </script>
 </body>
